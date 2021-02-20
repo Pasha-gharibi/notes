@@ -1,6 +1,6 @@
 package disqo.pasha.exception;
 
-import disqo.pasha.constant.Const;
+import disqo.pasha.constant.PublicConstants;
 import org.zalando.problem.AbstractThrowableProblem;
 import org.zalando.problem.Status;
 
@@ -17,7 +17,7 @@ public class BadRequestAlertException extends AbstractThrowableProblem {
     private final String errorKey;
 
     public BadRequestAlertException(String defaultMessage, String entityName, String errorKey) {
-        this(Const.ERROR_MESSAGE, defaultMessage, entityName, errorKey);
+        this(PublicConstants.ERROR_MESSAGE, defaultMessage, entityName, errorKey);
     }
 
     public BadRequestAlertException(URI type, String defaultMessage, String entityName, String errorKey) {

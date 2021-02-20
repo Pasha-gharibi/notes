@@ -2,7 +2,7 @@ package disqo.pasha.constant;
 
 import java.net.URI;
 
-public class Const {
+public class PublicConstants {
 
     public static final URI ERROR_MESSAGE = URI.create("support.disqo.com");
 

@@ -1,6 +1,6 @@
 package disqo.pasha.web.rest;
 
-import disqo.pasha.constant.Const;
+import disqo.pasha.constant.PublicConstants;
 import disqo.pasha.domain.Note;
 import disqo.pasha.exception.BadRequestAlertException;
 import disqo.pasha.service.NoteService;
@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -46,7 +47,7 @@ public class NoteResource {
         }
         Note result = noteService.save(note);
         return ResponseEntity.created(new URI("/api/notes/" + result.getId()))
-                .headers(HeaderUtil.createEntityCreationAlert(Const.MICROSERVICE_NAME, true, ENTITY_NAME, result.getId().toString()))
+                .headers(HeaderUtil.createEntityCreationAlert(PublicConstants.MICROSERVICE_NAME, true, ENTITY_NAME, result.getId().toString()))
                 .body(result);
     }
 
@@ -60,14 +61,14 @@ public class NoteResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/notes")
-    public ResponseEntity<Note> updateNote(@RequestBody Note note) throws URISyntaxException {
+    public ResponseEntity<Note> updateNote(@Valid @RequestBody Note note) throws URISyntaxException {
         log.debug("REST request to update Note : {}", note);
         if (note.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
         Note result = noteService.save(note);
         return ResponseEntity.ok()
-                .headers(HeaderUtil.createEntityUpdateAlert(Const.MICROSERVICE_NAME, true, ENTITY_NAME, note.getId().toString()))
+                .headers(HeaderUtil.createEntityUpdateAlert(PublicConstants.MICROSERVICE_NAME, true, ENTITY_NAME, note.getId().toString()))
                 .body(result);
     }
 
@@ -105,6 +106,6 @@ public class NoteResource {
     public ResponseEntity<Void> deleteNote(@PathVariable Long id) {
         log.debug("REST request to delete Note : {}", id);
         noteService.delete(id);
-        return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(Const.MICROSERVICE_NAME, true, ENTITY_NAME, id.toString())).build();
+        return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(PublicConstants.MICROSERVICE_NAME, true, ENTITY_NAME, id.toString())).build();
     }
 }
