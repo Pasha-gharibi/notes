@@ -1,9 +1,11 @@
 package disqo.pasha.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.LocalDate;
 
@@ -11,19 +13,27 @@ import java.time.LocalDate;
  * A Note.
  */
 @Entity
-@Table(name = "note")
+@Table(name = "t_note")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Note implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    public Note(@Size(max = 50) Long title) {
+        this.title = title;
+    }
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
+    @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
-    @Column(name = "title")
+
+    @Size(max = 50)
+    @Column(name = "title",nullable = false)
     private Long title;
 
+    @Size(max = 1000)
     @Column(name = "note")
     private String note;
 
@@ -33,7 +43,10 @@ public class Note implements Serializable {
     @Column(name = "last_update_time")
     private LocalDate lastUpdateTime;
 
-    // jhipster-needle-entity-add-field - JHipster will add fields here
+    @ManyToOne
+    @JsonIgnoreProperties(value = "notes", allowSetters = true)
+    private User user;
+
     public Long getId() {
         return id;
     }
@@ -44,11 +57,6 @@ public class Note implements Serializable {
 
     public Long getTitle() {
         return title;
-    }
-
-    public Note title(Long title) {
-        this.title = title;
-        return this;
     }
 
     public void setTitle(Long title) {
@@ -93,7 +101,19 @@ public class Note implements Serializable {
     public void setLastUpdateTime(LocalDate lastUpdateTime) {
         this.lastUpdateTime = lastUpdateTime;
     }
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
+
+    public User getUser() {
+        return user;
+    }
+
+    public Note user(User user) {
+        this.user = user;
+        return this;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -115,11 +135,11 @@ public class Note implements Serializable {
     @Override
     public String toString() {
         return "Note{" +
-            "id=" + getId() +
-            ", title=" + getTitle() +
-            ", note='" + getNote() + "'" +
-            ", createTime='" + getCreateTime() + "'" +
-            ", lastUpdateTime='" + getLastUpdateTime() + "'" +
-            "}";
+                "id=" + getId() +
+                ", title=" + getTitle() +
+                ", note='" + getNote() + "'" +
+                ", createTime='" + getCreateTime() + "'" +
+                ", lastUpdateTime='" + getLastUpdateTime() + "'" +
+                "}";
     }
 }
