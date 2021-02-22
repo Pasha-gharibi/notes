@@ -5,7 +5,6 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -21,34 +20,31 @@ import java.util.Set;
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
+    @SequenceGenerator(name = "sequenceGenerator")
+    private Long id;
+    @Email(message = "Email should be valid")
+    @Column(name = "email", unique = true, nullable = false)
+    private String email;
+    @Size(min = 8)
+    @Column(name = "password", nullable = false)
+    private String password;
+    @Column(name = "create_time")
+    private LocalDate createTime;
+    @Column(name = "last_update_time")
+    private LocalDate lastUpdateTime;
+    @OneToMany(mappedBy = "user")
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    private Set<Note> notes = new HashSet<>();
+
+    public User() {
+    }
 
     public User(@Email(message = "Email should be valid") String email, @Size(min = 8) String password) {
         this.email = email;
         this.password = password;
     }
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
-    @SequenceGenerator(name = "sequenceGenerator")
-    private Long id;
-
-    @Email(message = "Email should be valid")
-    @Column(name = "email",unique = true,nullable = false)
-    private String email;
-
-    @Size(min = 8)
-    @Column(name = "password",nullable = false)
-    private String password;
-
-    @Column(name = "create_time")
-    private LocalDate createTime;
-
-    @Column(name = "last_update_time")
-    private LocalDate lastUpdateTime;
-
-    @OneToMany(mappedBy = "user")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    private Set<Note> notes = new HashSet<>();
 
     public Long getId() {
         return id;

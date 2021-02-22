@@ -2,7 +2,13 @@ package disqo.pasha.configuration;
 
 
 import de.flapdoodle.embed.process.runtime.Network;
+import disqo.pasha.domain.User;
+import disqo.pasha.repository.UserRepository;
 import org.hibernate.cfg.AvailableSettings;
+import org.junit.Assert;
+import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.jdbc.DataSourceInitializationMode;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
@@ -21,12 +27,13 @@ import ru.yandex.qatools.embed.postgresql.distribution.Version;
 
 import javax.sql.DataSource;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Properties;
 import static java.lang.String.format;
 
 @Configuration
 @EnableTransactionManagement
-public class InMemoryDbConfig {
+public class InMemoryTestDbConfig {
     @Bean
     @DependsOn("postgresProcess")
     public DataSource dataSource(PostgresConfig config) {
@@ -80,7 +87,6 @@ public class InMemoryDbConfig {
 
     @Bean
     public PostgresConfig postgresConfig() throws IOException {
-
         final PostgresConfig postgresConfig = new PostgresConfig(Version.V9_6_8,
                 new AbstractPostgresConfig.Net("localhost", Network.getFreeServerPort()),
                 new AbstractPostgresConfig.Storage("notes"),
@@ -96,6 +102,13 @@ public class InMemoryDbConfig {
         PostgresExecutable exec = runtime.prepare(config);
         PostgresProcess process = exec.start();
         return process;
+    }
+
+
+
+    @Bean
+    public DataSourceInitializationMode dataSourceInitializationMode(){
+        return DataSourceInitializationMode.ALWAYS;
     }
 
 

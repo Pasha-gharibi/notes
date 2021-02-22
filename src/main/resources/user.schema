@@ -1,0 +1,1 @@
+message m { required binary email; required binary password; required binary create_time;required binary last_update_time; }
