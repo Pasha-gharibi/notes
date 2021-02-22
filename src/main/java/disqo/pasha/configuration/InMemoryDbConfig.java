@@ -15,21 +15,18 @@ import ru.yandex.qatools.embed.postgresql.distribution.Version;
 
 import javax.sql.DataSource;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
 
 import static java.lang.String.format;
 
 @Configuration
 @EnableTransactionManagement
 public class InMemoryDbConfig {
-    private static final List<String> DEFAULT_ADDITIONAL_INIT_DB_PARAMS = Arrays.asList("--nosync", "--locale=en_US.UTF-8");
 
     /**
      * @param config the PostgresConfig configuration which will be used to get the needed host, port..
      * @return the created DB datasource
      */
-    @Bean
+    @Bean("dataSource")
     @DependsOn("postgresProcess")
     public DataSource dataSource(PostgresConfig config) {
         DriverManagerDataSource ds = new DriverManagerDataSource();
@@ -47,12 +44,12 @@ public class InMemoryDbConfig {
     @Bean
     public PostgresConfig postgresConfig() throws IOException {
         final PostgresConfig postgresConfig = new PostgresConfig(Version.V9_6_8,
-                new AbstractPostgresConfig.Net("localhost", Network.getFreeServerPort()),
+//                new AbstractPostgresConfig.Net("localhost", Network.getFreeServerPort()),
+                new AbstractPostgresConfig.Net("localhost", 5000),
                 new AbstractPostgresConfig.Storage("notes"),
                 new AbstractPostgresConfig.Timeout(),
                 new AbstractPostgresConfig.Credentials("user", "pass")
         );
-//        postgresConfig.getAdditionalInitDbParams().addAll(DEFAULT_ADDITIONAL_INIT_DB_PARAMS);
         return postgresConfig;
     }
 

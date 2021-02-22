@@ -1,5 +1,6 @@
 package disqo.pasha.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -18,34 +19,37 @@ import java.time.LocalDate;
 public class Note implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
-    public Note(@Size(max = 50) Long title) {
-        this.title = title;
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
-
     @Size(max = 50)
-    @Column(name = "title",nullable = false)
-    private Long title;
+    @Column(name = "title", nullable = false)
+    private String title;
 
     @Size(max = 1000)
     @Column(name = "note")
     private String note;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
     @Column(name = "create_time")
     private LocalDate createTime;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
     @Column(name = "last_update_time")
     private LocalDate lastUpdateTime;
 
     @ManyToOne
     @JsonIgnoreProperties(value = "notes", allowSetters = true)
     private User user;
+
+    public Note() {
+    }
+
+    public Note(@Size(max = 50) String title) {
+        this.title = title;
+    }
 
     public Long getId() {
         return id;
@@ -55,11 +59,11 @@ public class Note implements Serializable {
         this.id = id;
     }
 
-    public Long getTitle() {
+    public String getTitle() {
         return title;
     }
 
-    public void setTitle(Long title) {
+    public void setTitle(String title) {
         this.title = title;
     }
 
@@ -67,17 +71,21 @@ public class Note implements Serializable {
         return note;
     }
 
+    public void setNote(String note) {
+        this.note = note;
+    }
+
     public Note note(String note) {
         this.note = note;
         return this;
     }
 
-    public void setNote(String note) {
-        this.note = note;
-    }
-
     public LocalDate getCreateTime() {
         return createTime;
+    }
+
+    public void setCreateTime(LocalDate createTime) {
+        this.createTime = createTime;
     }
 
     public Note createTime(LocalDate createTime) {
@@ -85,12 +93,12 @@ public class Note implements Serializable {
         return this;
     }
 
-    public void setCreateTime(LocalDate createTime) {
-        this.createTime = createTime;
-    }
-
     public LocalDate getLastUpdateTime() {
         return lastUpdateTime;
+    }
+
+    public void setLastUpdateTime(LocalDate lastUpdateTime) {
+        this.lastUpdateTime = lastUpdateTime;
     }
 
     public Note lastUpdateTime(LocalDate lastUpdateTime) {
@@ -98,21 +106,17 @@ public class Note implements Serializable {
         return this;
     }
 
-    public void setLastUpdateTime(LocalDate lastUpdateTime) {
-        this.lastUpdateTime = lastUpdateTime;
-    }
-
     public User getUser() {
         return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Note user(User user) {
         this.user = user;
         return this;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     @Override

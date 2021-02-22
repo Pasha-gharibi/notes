@@ -1,0 +1,1 @@
+message note { REQUIRED BINARY title; REQUIRED BINARY note;OPTIONAL BINARY create_time;OPTIONAL BINARY last_update_time; }

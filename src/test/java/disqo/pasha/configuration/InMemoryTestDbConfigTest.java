@@ -1,7 +1,6 @@
 package disqo.pasha.configuration;
 
 import disqo.pasha.domain.User;
-import disqo.pasha.repository.NoteRepository;
 import disqo.pasha.repository.UserRepository;
 import org.junit.Assert;
 import org.junit.Test;
@@ -15,9 +14,9 @@ import java.time.LocalDate;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {InMemoryDbConfig.class})
+@ContextConfiguration(classes = {InMemoryTestDbConfig.class})
 @EnableJpaRepositories(basePackageClasses = {UserRepository.class})
-public class InMemoryDbConfigTest {
+public class InMemoryTestDbConfigTest {
 
     @Autowired
     private UserRepository userRepo;

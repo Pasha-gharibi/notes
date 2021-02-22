@@ -1,0 +1,43 @@
+insert into t_user(id,email,password,create_time,last_update_time) values(1,'pasha1@test.com','123465789', CURRENT_DATE,CURRENT_DATE );
+insert into t_user(id,email,password,create_time,last_update_time) values(2,'pasha2@test.com','123465789', CURRENT_DATE,CURRENT_DATE );
+insert into t_user(id,email,password,create_time,last_update_time) values(3,'pasha3@test.com','123465789', CURRENT_DATE,CURRENT_DATE );
+insert into t_user(id,email,password,create_time,last_update_time) values(4,'pasha4@test.com','123465789', CURRENT_DATE,CURRENT_DATE );
+insert into t_user(id,email,password,create_time,last_update_time) values(5,'pasha5@test.com','123465789', CURRENT_DATE,CURRENT_DATE );
+insert into t_user(id,email,password,create_time,last_update_time) values(6,'pasha6@test.com','123465789', CURRENT_DATE,CURRENT_DATE );
+insert into t_user(id,email,password,create_time,last_update_time) values(7,'pasha7@test.com','123465789', CURRENT_DATE,CURRENT_DATE );
+insert into t_user(id,email,password,create_time,last_update_time) values(8,'pasha8@test.com','123465789', CURRENT_DATE,CURRENT_DATE );
+insert into t_user(id,email,password,create_time,last_update_time) values(9,'pasha9@test.com','123465789', CURRENT_DATE,CURRENT_DATE );
+insert into t_user(id,email,password,create_time,last_update_time) values(10,'pasha10@test.com','123465789', CURRENT_DATE,CURRENT_DATE );
+
+insert into t_note(id,user_id ,title, note ,create_time,last_update_time) values(1,1,'My title 1','my note 1', CURRENT_DATE,CURRENT_DATE );
+insert into t_note(id,user_id ,title, note ,create_time,last_update_time) values(2,1,'My title 1','my note 1', CURRENT_DATE,CURRENT_DATE );
+insert into t_note(id,user_id ,title, note ,create_time,last_update_time) values(3,1,'My title 1','my note 1', CURRENT_DATE,CURRENT_DATE );
+insert into t_note(id,user_id ,title, note ,create_time,last_update_time) values(4,1,'My title 1','my note 1', CURRENT_DATE,CURRENT_DATE );
+insert into t_note(id,user_id ,title, note ,create_time,last_update_time) values(5,1,'My title 1','my note 1', CURRENT_DATE,CURRENT_DATE );
+insert into t_note(id,user_id ,title, note ,create_time,last_update_time) values(6,1,'My title 1','my note 1', CURRENT_DATE,CURRENT_DATE );
+insert into t_note(id,user_id ,title, note ,create_time,last_update_time) values(7,1,'My title 1','my note 1', CURRENT_DATE,CURRENT_DATE );
+insert into t_note(id,user_id ,title, note ,create_time,last_update_time) values(8,1,'My title 1','my note 1', CURRENT_DATE,CURRENT_DATE );
+insert into t_note(id,user_id ,title, note ,create_time,last_update_time) values(9,1,'My title 1','my note 1', CURRENT_DATE,CURRENT_DATE );
+insert into t_note(id,user_id ,title, note ,create_time,last_update_time) values(10,1,'My title 1','my note 1', CURRENT_DATE,CURRENT_DATE );
+
+insert into t_note(id,user_id ,title, note ,create_time,last_update_time) values(11,2,'My title 2','my note 2', CURRENT_DATE,CURRENT_DATE );
+insert into t_note(id,user_id ,title, note ,create_time,last_update_time) values(12,2,'My title 2','my note 2', CURRENT_DATE,CURRENT_DATE );
+insert into t_note(id,user_id ,title, note ,create_time,last_update_time) values(13,2,'My title 2','my note 2', CURRENT_DATE,CURRENT_DATE );
+insert into t_note(id,user_id ,title, note ,create_time,last_update_time) values(14,2,'My title 2','my note 2', CURRENT_DATE,CURRENT_DATE );
+insert into t_note(id,user_id ,title, note ,create_time,last_update_time) values(15,2,'My title 2','my note 2', CURRENT_DATE,CURRENT_DATE );
+insert into t_note(id,user_id ,title, note ,create_time,last_update_time) values(16,2,'My title 2','my note 2', CURRENT_DATE,CURRENT_DATE );
+insert into t_note(id,user_id ,title, note ,create_time,last_update_time) values(17,2,'My title 2','my note 2', CURRENT_DATE,CURRENT_DATE );
+insert into t_note(id,user_id ,title, note ,create_time,last_update_time) values(18,2,'My title 2','my note 2', CURRENT_DATE,CURRENT_DATE );
+insert into t_note(id,user_id ,title, note ,create_time,last_update_time) values(19,2,'My title 2','my note 2', CURRENT_DATE,CURRENT_DATE );
+insert into t_note(id,user_id ,title, note ,create_time,last_update_time) values(20,2,'My title 2','my note 2', CURRENT_DATE,CURRENT_DATE );
+
+insert into t_note(id,user_id ,title, note ,create_time,last_update_time) values(21,3,'My title 3','my note 3', CURRENT_DATE,CURRENT_DATE );
+insert into t_note(id,user_id ,title, note ,create_time,last_update_time) values(22,3,'My title 3','my note 3', CURRENT_DATE,CURRENT_DATE );
+insert into t_note(id,user_id ,title, note ,create_time,last_update_time) values(23,3,'My title 3','my note 3', CURRENT_DATE,CURRENT_DATE );
+insert into t_note(id,user_id ,title, note ,create_time,last_update_time) values(24,3,'My title 3','my note 3', CURRENT_DATE,CURRENT_DATE );
+insert into t_note(id,user_id ,title, note ,create_time,last_update_time) values(25,3,'My title 3','my note 3', CURRENT_DATE,CURRENT_DATE );
+insert into t_note(id,user_id ,title, note ,create_time,last_update_time) values(26,3,'My title 3','my note 3', CURRENT_DATE,CURRENT_DATE );
+insert into t_note(id,user_id ,title, note ,create_time,last_update_time) values(27,3,'My title 3','my note 3', CURRENT_DATE,CURRENT_DATE );
+insert into t_note(id,user_id ,title, note ,create_time,last_update_time) values(28,3,'My title 3','my note 3', CURRENT_DATE,CURRENT_DATE );
+insert into t_note(id,user_id ,title, note ,create_time,last_update_time) values(29,3,'My title 3','my note 3', CURRENT_DATE,CURRENT_DATE );
+insert into t_note(id,user_id ,title, note ,create_time,last_update_time) values(30,3,'My title 3','my note 3', CURRENT_DATE,CURRENT_DATE );
