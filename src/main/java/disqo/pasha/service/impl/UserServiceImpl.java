@@ -3,6 +3,7 @@ package disqo.pasha.service.impl;
 import disqo.pasha.domain.User;
 import disqo.pasha.repository.UserRepository;
 import disqo.pasha.service.UserService;
+import org.springframework.data.domain.Example;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -52,4 +53,15 @@ public class UserServiceImpl implements UserService {
         log.debug("Request to delete User : {}", id);
         userRepository.deleteById(id);
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public  Optional<User> findByEmail(String email) {
+        log.debug("Request to get User : {}", email);
+        User user = new User();
+        user.setEmail(email);
+        Example<User> example =  Example.of(user);
+        return userRepository.findOne(example);
+    }
+
 }

@@ -22,7 +22,6 @@ public class NoteParquetWriter implements ItemWriter<Note> {
 
     private MessageType getSchemaForParquetFile() throws IOException {
         File resource = new ClassPathResource("note.schema").getFile();
-//        File resource = new File("note.schema");
         String rawSchema = new String(Files.readAllBytes(resource.toPath()));
         return MessageTypeParser.parseMessageType(rawSchema);
     }

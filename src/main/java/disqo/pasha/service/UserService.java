@@ -40,4 +40,11 @@ public interface UserService {
      * @param id the id of the entity.
      */
     void delete(Long id);
+
+    /**
+     * Get the "email" user.
+     *
+     * @param email the id of the entity.
+     */
+    Optional<User> findByEmail(String email);
 }

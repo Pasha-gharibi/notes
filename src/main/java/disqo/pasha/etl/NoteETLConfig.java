@@ -84,7 +84,6 @@ public class NoteETLConfig {
 
     @Bean("noteJsonMarshaller")
     JsonObjectMarshaller noteJsonMarshaller() {
-
         JacksonJsonObjectMarshaller jacksonJsonObjectMarshaller = new JacksonJsonObjectMarshaller<Note>();
         ObjectMapper mapper = new ObjectMapper();
         mapper.registerModule(new JSR310Module());
