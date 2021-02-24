@@ -2,9 +2,7 @@ package disqo.pasha.etl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 import com.fasterxml.jackson.datatype.jsr310.JSR310Module;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import disqo.pasha.constant.Dashboard;
 import disqo.pasha.domain.Note;
 import disqo.pasha.etl.processor.NoteItemProcessor;
@@ -23,12 +21,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
-import org.springframework.security.jackson2.CoreJackson2Module;
-import org.springframework.security.web.jackson2.WebServletJackson2Module;
-
-import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
-import java.util.Locale;
 
 @Configuration
 public class NoteETLConfig {
@@ -94,9 +86,8 @@ public class NoteETLConfig {
     JsonObjectMarshaller noteJsonMarshaller() {
         JacksonJsonObjectMarshaller jacksonJsonObjectMarshaller = new JacksonJsonObjectMarshaller<Note>();
         ObjectMapper mapper = new ObjectMapper();
-//        mapper.setDateFormat(new SimpleDateFormat("yyyyMMdd hh:mm", Locale.getDefault()));
-//        mapper.registerModule(new JavaTimeModule());
-//        mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
+        mapper.registerModule(new JSR310Module());
+        mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
         jacksonJsonObjectMarshaller.setObjectMapper(mapper);
         return jacksonJsonObjectMarshaller;
     }
