@@ -25,19 +25,22 @@ public class OAuth2SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     private ClientDetailsService clientDetailsService;
 
+//    @Bean
+//    public PasswordEncoder passwordEncoder() {
+//        return new BCryptPasswordEncoder();
+//    }
+
     @Autowired
     public void globalUserDetails(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
-                .withUser("bill").password("abc123").roles("ADMIN").and()
-                .withUser("bob").password("abc123").roles("USER");
-        auth.userDetailsService(userDetailsService);
-
+                .withUser("pasha1@test.com").password("{noop}123456789").roles("ADMIN").and()
+                .withUser("pasha2@test.com").password("{noop}123456789").roles("USER");
+//        auth.userDetailsService(userDetailsService);//.passwordEncoder(PasswordEncoderFactories.createDelegatingPasswordEncoder());
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
-                .csrf().disable()
+        http.csrf().disable()
                 .anonymous().disable()
                 .authorizeRequests()
                 .antMatchers("/oauth/token").permitAll();
