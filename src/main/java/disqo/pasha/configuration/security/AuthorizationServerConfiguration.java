@@ -37,8 +37,8 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
             .authorizedGrantTypes("password", "authorization_code", "refresh_token", "implicit")
             .authorities("ROLE_CLIENT", "ROLE_TRUSTED_CLIENT")
             .scopes("read", "write", "trust")
-//            .secret(PasswordEncoderFactories.createDelegatingPasswordEncoder().encode("secret"))
-				.secret("secret")
+//            .secret(PasswordEncoderFactories.createDelegatingPasswordEncoder().encode("{bcrypt}secret"))
+				.secret("{noop}secret")
             .accessTokenValiditySeconds(120).//Access token is only valid for 2 minutes.
             refreshTokenValiditySeconds(600);//Refresh token is only valid for 10 minutes.
 	}
